@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <app-search-pokemon></app-search-pokemon>
+        @for ( pokemon of pokemonList; track pokemonList ) {
+            <div class="col m4 s6">
+                <div (click)="goToPokemon(pokemon)" class="card horizontal" pkmnBorderCard>
+                    <div class="card-image">
+                        <img [src]="pokemon.picture" [alt]="pokemon.name" />
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>{{ pokemon.name }}</p>
+                            <p><small>{{ pokemon.created | date:"dd/MM/yyyy" }}</small></p>
+                            <div>
+                                @for ( type of pokemon.types; track pokemonList) {
+                                    <div class="{{ type | pokemonTypeColor }}">
+                                        {{ type }}
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<a class="btn-floating btn-large pulse waves-effect waves-light red"
+    style="position: fixed; bottom: 25px; right: 25px;"
+    routerLink="/pokemon/add" 
+>
+    <i class="material-icons">+</i>
